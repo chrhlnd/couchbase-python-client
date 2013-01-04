@@ -216,6 +216,9 @@ class Bucket(object):
                                          self.bucket_name,
                                          self.bucket_password)
 
+    def __del__(self):
+        self.mc_client.done()
+
     def append(self, key, value, cas=0):
         return self.mc_client.append(key, value, cas)
 
